@@ -1,7 +1,22 @@
-export default function HomePage() {
-  return <h1>Olá de dentro de page.tsx</h1>;
-}
-
 // page.tsx = index.html
 // app/page.tsx -> /
 // app/about/page.tsx -> /about
+
+import { PostFeatured } from '@/components/PostFeatured';
+import { PostsList } from '@/components/PostsList';
+import { SpinLoader } from '@/components/SpinLoader';
+import { Suspense } from 'react';
+
+export default async function HomePage() {
+  return (
+    <>
+      <Suspense fallback={<SpinLoader />}>
+        <PostFeatured />
+      </Suspense>
+
+      <Suspense fallback={<SpinLoader />}>
+        <PostsList />
+      </Suspense>
+    </>
+  );
+}
