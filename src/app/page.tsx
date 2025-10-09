@@ -7,7 +7,7 @@ import { PostsList } from '@/components/PostsList';
 import { SpinLoader } from '@/components/SpinLoader';
 import { Suspense } from 'react';
 
-// page.tsx (server) -> menu.tsx (server) -> link (client)
+export const dynamic = 'force-static';
 
 export default async function HomePage() {
   return (

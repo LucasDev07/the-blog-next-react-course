@@ -7,5 +7,6 @@ export async function revalidateExampleAction(formData: FormData) {
   console.log('Eu estou em uma server action', path);
 
   //revalidatePath(`${path}`);
-  revalidateTag('randomuser');
+  revalidateTag('posts'); //home
+  revalidateTag('post-rotina-matinal-de-pessoas-altamente-eficazes'); // single
 }
