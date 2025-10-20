@@ -1,9 +1,11 @@
+import { findAllPublicPosts } from '@/lib/post/queries/public';
 import { PostCoverImage } from '../PostCoverImage';
 import { PostSummary } from '../PostSummary';
-import { findAllPublicPosts } from '@/lib/post/queries';
 
 export async function PostsList() {
   const posts = await findAllPublicPosts();
+
+  if (posts.length <= 1) return null;
 
   return (
     <div className='grid grid-cols-1 mb-16 gap-8 sm:grid-cols-2 lg:grid-cols-3'>
