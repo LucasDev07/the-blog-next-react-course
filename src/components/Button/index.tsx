@@ -13,13 +13,13 @@ export function Button({
   size = 'md',
   ...props
 }: ButtonProps) {
-  const buttonVariants: Record<ButtonVariants, String> = {
+  const buttonVariants: Record<ButtonVariants, string> = {
     default: clsx('bg-blue-600 hover:bg-blue-700 text-blue-100'),
     ghost: clsx('bg-slate-300 hover:bg-slate-400 text-slate-950'),
     danger: clsx('bg-red-600 hover:bg-red-700 text-red-100'),
   };
 
-  const buttonSizes: Record<ButtonSizes, String> = {
+  const buttonSizes: Record<ButtonSizes, string> = {
     sm: clsx(
       'text-xs/tight',
       'py-1',

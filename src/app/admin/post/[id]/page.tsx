@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default async function AdminPostIdPage({ params }: AdminPostPageProps) {
   const { id } = await params;
-  const post = await findPostByIdAdmin(id).catch();
+  const post = await findPostByIdAdmin(id).catch(() => undefined);
 
   if (!post) notFound();
 
@@ -25,7 +25,7 @@ export default async function AdminPostIdPage({ params }: AdminPostPageProps) {
   return (
     <div className='flex flex-col gap-6'>
       <h1 className='text-xl font-extrabold'>Editar Post</h1>
-      <ManagePostForm publicPost={publicPost} />
+      <ManagePostForm mode='update' publicPost={publicPost} />
     </div>
   );
 }
