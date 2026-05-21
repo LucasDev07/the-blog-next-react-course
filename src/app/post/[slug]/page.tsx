@@ -1,4 +1,7 @@
-import { findPostBySlugCached } from "@/app/lib/post/queries";
+import {
+  findAllPublicPostCached,
+  findPostBySlugCached,
+} from "@/app/lib/post/queries";
 import { SinglePost } from "@/components/SinglePost";
 import { SpinLoader } from "@/components/SpinLoader";
 import { Metadata } from "next";
@@ -18,6 +21,19 @@ export async function generateMetadata({
     title: post.title,
     description: post.excerpt,
   };
+}
+
+export async function generateStaticParams() {
+  const posts = await findAllPublicPostCached();
+  const params = posts.map((post) => {
+    return {
+      slug: post.slug,
+    };
+  });
+
+  console.log(params);
+
+  return params;
 }
 
 export default async function PostSlugPage({ params }: PostSlugPageProps) {

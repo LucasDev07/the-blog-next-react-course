@@ -1,7 +1,5 @@
-import { formatDateTime } from "@/utils/format-datetime";
-import { formatDistanceToNow } from "date-fns/formatDistanceToNow";
-import { PostHeading } from "../PostHeading";
 import { PostDate } from "../PostDate";
+import { PostHeading } from "../PostHeading";
 
 type PostSummaryProps = {
   postHeading: "h1" | "h2";

@@ -1,5 +1,4 @@
 export type PostModel = {
-  formatDateTime(createdAt: any): import("react").ReactNode;
   id: string;
   title: string;
   slug: string;
