@@ -1,4 +1,4 @@
-import { formatDateTime, formatDistanceToNow } from "@/utils/format-datetime";
+import { formatDatetime, formatDistanceToNow } from '@/utils/format-datetime';
 
 type PostDateProps = {
   dateTime: string;
@@ -7,11 +7,11 @@ type PostDateProps = {
 export function PostDate({ dateTime }: PostDateProps) {
   return (
     <time
-      className="text-slate-600 text-sm/tight"
+      className='text-slate-600 text-sm/tight'
       dateTime={dateTime}
       title={formatDistanceToNow(dateTime)}
     >
-      {formatDateTime(dateTime)}
+      {formatDatetime(dateTime)}
     </time>
   );
 }

@@ -9,14 +9,17 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@uiw/react-md-editor": "^4.1.1",
     "better-sqlite3": "^12.10.0",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "drizzle-orm": "^0.45.2",
+    "lucide-react": "^1.16.0",
     "next": "16.2.4",
     "react": "19.2.4",
     "react-dom": "19.2.4",
     "react-markdown": "^10.1.0",
+    "react-toastify": "^11.1.0",
     "rehype-sanitize": "^6.0.0",
     "remark-gfm": "^4.0.1"
   },
@@ -31,6 +34,8 @@
     "drizzle-kit": "^0.31.10",
     "eslint": "^9",
     "eslint-config-next": "16.2.4",
+    "eslint-plugin-react-compiler": "^19.1.0-rc.2",
+    "prettier": "^3.8.3",
     "tailwindcss": "^4",
     "tsx": "^4.21.0",
     "typescript": "^5"

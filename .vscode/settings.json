@@ -12,6 +12,7 @@
   "editor.tabSize": 2,
   "explorer.compactFolders": false,
   "workbench.editor.enablePreview": false,
+  "js/ts.updateImportsOnFileMove.enabled": "prompt",
 
   "code-runner.clearPreviousOutput": true,
   "code-runner.runInTerminal": true,
