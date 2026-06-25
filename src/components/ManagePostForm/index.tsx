@@ -1,57 +1,109 @@
 'use client';
 
-import { useState } from 'react';
-import { Button } from '../Button';
-import { InputCheckbox } from '../InputCheckbox';
-import { InputText } from '../InputText';
-import { MarkdownEditor } from '../MarkdownEditor';
+import { createPostAction } from '@/actions/post/create-post-action';
+import { Button } from '@/components/Button';
+import { InputCheckbox } from '@/components/InputCheckbox';
+import { InputText } from '@/components/InputText';
+import { MarkdownEditor } from '@/components/MarkdownEditor';
+import { makePartialPublicPost, PublicPost } from '@/dto/post/dto';
+import { useActionState, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import { ImageUploader } from '../admin/ImageUploader';
 
-export function ManagePostForm() {
-  const [contentValue, setContentValue] = useState('');
+type ManagePostFormProps = {
+  publicPost?: PublicPost;
+};
+
+export function ManagePostForm({ publicPost }: ManagePostFormProps) {
+  const initialState = {
+    formState: makePartialPublicPost(publicPost),
+    errors: [],
+  };
+  const [state, action, isPending] = useActionState(
+    createPostAction,
+    initialState,
+  );
+
+  useEffect(() => {
+    if (state.errors.length > 0) {
+      toast.dismiss();
+      state.errors.forEach(error => toast.error(error));
+    }
+  }, [state.errors]);
+
+  const { formState } = state;
+  const [contentValue, setContentValue] = useState(publicPost?.content || '');
 
   return (
-    <form action='' className='mb-16'>
+    <form action={action} className='mb-16'>
       <div className='flex flex-col gap-6'>
-        <InputText labelText='Nome' placeholder='Digite o seu nome' />
-
-        <ImageUploader />
-
-        <InputText labelText='Sobrenome' placeholder='Digite o seu sobrenome' />
-
-        <InputCheckbox labelText='Sobrenome' />
-
         <InputText
-          disabled
-          labelText='Sobrenome'
-          placeholder='Digite o seu sobrenome'
-          defaultValue='Olá mundo'
+          labelText='ID'
+          name='id'
+          placeholder='ID gerado automaticamente'
+          type='text'
+          defaultValue={formState.id}
+          readOnly
         />
+
         <InputText
-          disabled
-          labelText='Sobrenome'
-          placeholder='Digite o seu sobrenome'
+          labelText='Slug'
+          name='slug'
+          placeholder='Slug gerada automaticamente'
+          type='text'
+          defaultValue={formState.slug}
+          readOnly
+        />
+
+        <InputText
+          labelText='Autor'
+          name='author'
+          placeholder='Digite o nome do autor'
+          type='text'
+          defaultValue={formState.author}
+        />
+
+        <InputText
+          labelText='Título'
+          name='title'
+          placeholder='Digite o título'
+          type='text'
+          defaultValue={formState.title}
+        />
+
+        <InputText
+          labelText='Excerto'
+          name='excerpt'
+          placeholder='Digite o resumo'
+          type='text'
+          defaultValue={formState.excerpt}
         />
 
         <MarkdownEditor
           labelText='Conteúdo'
-          disabled={false}
-          textAreaName='content'
           value={contentValue}
           setValue={setContentValue}
+          textAreaName='content'
+          disabled={false}
         />
 
+        <ImageUploader />
+
         <InputText
-          labelText='Sobrenome'
-          placeholder='Digite o seu sobrenome'
-          readOnly
+          labelText='URL da imagem de capa'
+          name='coverImageUrl'
+          placeholder='Digite a url da imagem'
+          type='text'
+          defaultValue={formState.coverImageUrl}
         />
-        <InputText
-          labelText='Sobrenome'
-          placeholder='Digite o seu sobrenome'
-          defaultValue='Olá Mundo'
-          readOnly
+
+        <InputCheckbox
+          labelText='Publicar?'
+          name='published'
+          type='checkbox'
+          defaultChecked={formState.published}
         />
+
         <div className='mt-4'>
           <Button type='submit'>Enviar</Button>
         </div>
