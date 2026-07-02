@@ -4,9 +4,11 @@ type AdminPostLayoutProps = {
   children: React.ReactNode;
 };
 
-export default function AdminPostLayout({
+export default async function AdminPostLayout({
   children,
 }: Readonly<AdminPostLayoutProps>) {
+  //await requireLoginSessionOrRedirct();
+
   return (
     <>
       <MenuAdmin />
